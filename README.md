@@ -1,6 +1,6 @@
 **Repositorio para challenge técnico de FUDO para la posición de Desarrollador de Backed Developer (Ruby) Ssr.**
 
-**Consignas**:
+## Consignas
 1. Explicar en un archivo llamado fudo.md qué es lo que es Fudo, en sólo 2 o 3 párrafos, en no más de 100 palabras.
 2. Explicar brevemente en un archivo llamado tcp.md qué es TCP, en español, en no más de 50 palabras.
 3. Explicar brevemente en un archivo llamado http.md qué es HTTP, en español, en no más de 50 palabras.
@@ -25,4 +25,6 @@ autenticado antes.
 - El proyecto debe estar hosteado en GitHub/GitLab o cualquier repo git, incluyendo los archivos .md de los 3 primeros puntos.
 - Para cualquier cosa no indicada en los puntos anteriores, hay libertad en la decisión.
 
-En el directorio **consignas1-3**, se pueden hayar las respuestas a las 3 primeras consignas, mientras que en el directorio **api** se puede hayar todo lo referente a la aplicación pedida en la consigna 4.
+## Directorios
+- **consignas1-3**: respuestas a las 3 primeras consignas.
+- **api** Aplicación pedida en la consigna 4.
