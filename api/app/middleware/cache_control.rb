@@ -3,7 +3,7 @@
 require 'rack'
 
 # Middleware para personalizar el header Cache-Control de determinadas respuestas.
-class CachePolicy
+class CacheControl
   def initialize(app)
     @app = app
   end

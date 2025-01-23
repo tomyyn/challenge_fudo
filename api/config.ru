@@ -2,7 +2,7 @@
 
 require 'rack'
 require './app/application'
-require './app/middleware/cache_policy'
+require './app/middleware/cache_control'
 
 use(Rack::Reloader, 0) if ENV['RACK_ENV'] == 'development'
 
