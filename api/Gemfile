@@ -12,6 +12,9 @@ gem 'dotenv'
 # Session management
 gem 'rack-session', '~> 2'
 
+# Mism
+gem 'require_all'
+
 # Development
 group :development do
   gem 'byebug'

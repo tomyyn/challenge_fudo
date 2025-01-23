@@ -3,9 +3,11 @@
 require 'rack'
 require 'rack/session/cookie'
 require 'dotenv'
+require 'require_all'
 
 require './app/application'
-require './app/middleware/cache_control'
+require_all './app/middleware'
+require_all './app/controllers'
 
 Dotenv.load
 
@@ -17,4 +19,10 @@ use Rack::Session::Cookie, key: 'rack.session',
 use CacheControl
 use Rack::Static, urls: ['/'], root: 'public', cascade: true
 
-run Application.new
+app = Rack::URLMap.new(
+  '/auth' => AuthController.new,
+  '/products' => ProductsController.new,
+  '/' => Application.new # Controller de debug, borrar luego.
+)
+
+run app
