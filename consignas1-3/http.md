@@ -1,0 +1,1 @@
+HTTP es un protocolo de red de la capa de aplicación. Su objetivo es definir cómo se transfiere la data entre cliente y servidor, siendo este la base de las transferencias de datos en la web. Entre sus características principales, se encuentran el ser basado en texto y sin estado.

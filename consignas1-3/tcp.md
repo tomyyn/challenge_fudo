@@ -1,0 +1,1 @@
+TCP es un protocolo de red de la capa de transporte del modelo TCP/IP. Su funcionalidad principal es asegurarse de que la información entercambiada entre dos hosts sea entregada en orden y sin pérdidas ni errores. Sus características mas importantes para garantizar lo mencionado son el handshake y el acknowledge.
