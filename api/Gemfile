@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Core gems
-gem "rack"
+gem 'rack'
+gem 'rackup'
 
 # Development
 group :development do
-  gem "byebug"
-  gem "rubocop"
+  gem 'byebug'
+  gem 'rubocop'
 end

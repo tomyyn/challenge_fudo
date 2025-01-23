@@ -11,6 +11,8 @@ GEM
       racc
     racc (1.8.1)
     rack (3.1.8)
+    rackup (2.2.1)
+      rack (>= 3)
     rainbow (3.1.1)
     regexp_parser (2.10.0)
     rubocop (1.71.0)
@@ -36,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   rack
+  rackup
   rubocop
 
 BUNDLED WITH
