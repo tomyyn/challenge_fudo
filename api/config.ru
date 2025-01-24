@@ -18,6 +18,7 @@ use Rack::Session::Cookie, key: 'rack.session',
                            expire_after: 3600,
                            secret: ENV.fetch('SESSION_SECRET', nil)
 use CacheControl
+use Rack::Deflater
 use Rack::Static, urls: ['/AUTHORS', '/openapi.yaml'], root: 'public', cascade: true
 use Auth
 
