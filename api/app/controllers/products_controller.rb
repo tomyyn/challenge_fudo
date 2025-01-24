@@ -13,6 +13,8 @@ class ProductsController < BaseController
       create
     when ['GET', '']
       index
+    when ['GET', '/creation_logs']
+      creation_logs_index
     else
       not_found
     end
@@ -32,5 +34,11 @@ class ProductsController < BaseController
     products, count, page_count = Product.list(params[:page].to_i, (params[:per_page]&.to_i || 10),
                                                params.except(:page, :per_page))
     [200, {}, [{ products: products, count: count, page_count: page_count }]]
+  end
+
+  def creation_logs_index
+    creation_logs, count, page_count = Product.list_creation_logs(params[:page].to_i, (params[:per_page]&.to_i || 10),
+                                                                  params.except(:page, :per_page))
+    [200, {}, [{ creation_logs: creation_logs, count: count, page_count: page_count }]]
   end
 end

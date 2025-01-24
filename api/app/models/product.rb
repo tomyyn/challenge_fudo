@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../async_tasks/create_product_task'
+require_relative '../services/list_service'
 
 # Modelo para productos.
 class Product
@@ -54,21 +55,11 @@ class Product
 
   def self.list(page, per_page, filters = {})
     filters = filters.slice(:id, :name, :external_id)
+    ListService.new(@products, page, per_page, filters).filter_and_paginate_list
+  end
 
-    products = @products
-    if filters.any?
-      products = products.select do |product|
-        filters.all? do |key, value|
-          product[key].to_s == value.to_s
-        end
-      end
-    end
-
-    page_count = (products.size / per_page.to_f).ceil
-    count = products.size
-
-    products = products.slice(page * per_page, per_page) || []
-
-    [products, count, page_count]
+  def self.list_creation_logs(page, per_page, filters = {})
+    filters = filters.slice(:log_id)
+    ListService.new(@creation_logs, page, per_page, filters).filter_and_paginate_list
   end
 end
