@@ -12,7 +12,7 @@ gem 'dotenv'
 # Session management
 gem 'rack-session', '~> 2'
 
-# Mism
+# Misc
 gem 'require_all'
 
 # Development
