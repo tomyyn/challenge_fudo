@@ -5,6 +5,8 @@ require './app/models/user'
 
 # Controlador para la autenticación de usuarios.
 class AuthController < BaseController
+  private
+
   def route_request
     case routing_info
     when ['POST', '/login']

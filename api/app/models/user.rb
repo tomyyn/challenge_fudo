@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'byebug'
-
 # Modelo para usuarios.
 class User
   @users = [{ id: 0, username: 'tomyyn', password: '12345678' }]
