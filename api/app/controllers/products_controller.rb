@@ -28,5 +28,9 @@ class ProductsController < BaseController
     [202, {}, [{ 'log_id' => log_id }]]
   end
 
-  def index; end
+  def index
+    products, count, page_count = Product.list(params[:page].to_i, (params[:per_page]&.to_i || 10),
+                                               params.except(:page, :per_page))
+    [200, {}, [{ products: products, count: count, page_count: page_count }]]
+  end
 end

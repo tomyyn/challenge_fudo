@@ -9,8 +9,7 @@ class BaseController
   def call(env)
     @request = Rack::Request.new(env)
     @session = env['rack.session']
-    input = env['rack.input'].read
-    @params = input.empty? ? {} : JSON.parse(input).deep_transform_keys { |key| key.underscore.to_sym }
+    @params = build_params
 
     status, headers, body = route_request
     headers['content-type'] = 'application/json'
@@ -29,5 +28,13 @@ class BaseController
 
   def not_found
     [404, {}, [{ 'error' => 'Not found' }]]
+  end
+
+  def build_params
+    params = {}
+    input = request.body.read
+    params.merge!(JSON.parse(input)) unless input.empty?
+    params.merge!(request.params)
+    params.deep_transform_keys { |key| key.underscore.to_sym }
   end
 end

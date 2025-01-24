@@ -35,10 +35,6 @@ class Product
 
     update_creation_log(log_id, errors) unless log_id.nil?
 
-    p @products
-    p log_id
-    p @creation_logs
-
     errors.empty?
   end
 
@@ -56,7 +52,23 @@ class Product
     log[:errors] = errors
   end
 
-  def list
-    @products
+  def self.list(page, per_page, filters = {})
+    filters = filters.slice(:id, :name, :external_id)
+
+    products = @products
+    if filters.any?
+      products = products.select do |product|
+        filters.all? do |key, value|
+          product[key].to_s == value.to_s
+        end
+      end
+    end
+
+    page_count = (products.size / per_page.to_f).ceil
+    count = products.size
+
+    products = products.slice(page * per_page, per_page) || []
+
+    [products, count, page_count]
   end
 end
