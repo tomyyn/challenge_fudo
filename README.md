@@ -28,3 +28,27 @@ autenticado antes.
 ## Directorios
 - **consignas1-3**: respuestas a las 3 primeras consignas.
 - **api** Aplicación pedida en la consigna 4.
+
+## Cómo levantar la aplicación
+- Es posible levantar la aplicación de forma nativa o mediante Docker.
+- Todo lo especificado en esta sección deberá realizarse en el directorio **/api**/.
+- Antes de levantar la aplicación, es necesario crear un archivo **.env** en **/api**, Esto puede hacerse renombrando **.env.dist**
+
+### Nativo
+**Requisitos**:
+- Ruby 3.2.2
+- Bundler
+
+**pasos**:
+1. Instalar las gemas requeridas ejecutando **bundle install**.
+2. Levantar la aplicación ejecutando **rackup**
+
+### Docker
+**Requisitos**:
+- Docker
+- docker-compose
+
+**pasos**:
+1. Construir la imagen de Docker (solo si ya no se encuentra construida) y levantar la aplicación ejecutando **docker-compose up**.
+
+**Nota**: Dado que las gemas son instaladas en un volumen dedicado, no es necesario reconstruir la imagen cada vez que se modifican estas.
