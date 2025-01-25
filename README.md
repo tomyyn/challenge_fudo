@@ -58,4 +58,4 @@ autenticado antes.
 ## Tests
 Los tests de la aplicación se encuentran en el directorio /api/spec y se dividen en dos tipos:
 1. **unit**: Se utilizan para probar las funcionalidades de los distintos componentes de la aplicación..
-2. **full_app**: Se utilizan para probar las requests a la aplicación completa, incluyendo todos los middlewares, configuraciones y ruteos. **Nota**: Estos podrían utilizarse en un futuro para generar automáticamente **openapi.yml** de conseguirse la herramienta correcta.
+2. **full_app**: Se utilizan para probar las requests a la aplicación completa, incluyendo todos los middlewares, configuraciones y ruteos. **Nota**: Estos podrían utilizarse en un futuro para generar automáticamente **openapi.yaml** de conseguirse la herramienta correcta.
