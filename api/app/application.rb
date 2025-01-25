@@ -16,6 +16,6 @@ class Application
 
     counter += 1
     env['rack.session']['counter'] = counter
-    [200, {}, ["Hello, worlds! #{counter}"]]
+    [200, {}, ["Hello, worldsss from Docker XD!! #{counter}"]]
   end
 end
