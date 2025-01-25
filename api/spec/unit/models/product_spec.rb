@@ -30,7 +30,7 @@ RSpec.describe Product do
   describe '.create_async' do
     it 'enqueues the creation of a new product' do
       expect_any_instance_of(CreateProductTask).to receive(:perform_async).with(name: 'Product', external_id: '1234',
-                                                                                log_id: anything)
+                                                                                log_id: anything, webhook_url: nil)
       Product.create_async('Product', '1234')
     end
 
@@ -74,6 +74,29 @@ RSpec.describe Product do
                                      { log_id: 2, name: 'Producto', external_id: '1236', status: 'creating' }]
         expect(count).to eq 3
         expect(page_count).to eq 1
+      end
+    end
+  end
+
+  describe '.find_creation_log' do
+    before :each do
+      Product.instance_variable_set(:@creation_logs,
+                                    [{ log_id: 0, name: 'Product', external_id: '1234', status: 'creating' },
+                                     { log_id: 1, name: 'Product', external_id: '1235', status: 'creating' },
+                                     { log_id: 2, name: 'Producto', external_id: '1236', status: 'creating' }])
+    end
+
+    context 'with correct data' do
+      it 'returns the creation log' do
+        creation_log = Product.find_creation_log(1)
+        expect(creation_log).to eq({ log_id: 1, name: 'Product', external_id: '1235', status: 'creating' })
+      end
+    end
+
+    context 'with incorrect data' do
+      it 'returns nil' do
+        creation_log = Product.find_creation_log(3)
+        expect(creation_log).to eq nil
       end
     end
   end

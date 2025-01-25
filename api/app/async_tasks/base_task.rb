@@ -5,10 +5,13 @@ class BaseTask
   attr_accessor :id
 
   @@id = 0
+  @@creation_mutex = Mutex.new
 
   def initialize
-    @id = @@id
-    @@id += 1
+    @@creation_mutex.synchronize do
+      @id = @@id
+      @@id += 1
+    end
   end
 
   def perform_async(**args)

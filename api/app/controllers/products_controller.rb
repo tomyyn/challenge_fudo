@@ -26,7 +26,7 @@ class ProductsController < BaseController
               [{ 'error' => 'name and external_id are required' }]]
     end
 
-    log_id = Product.create_async(params[:name], params[:external_id])
+    log_id = Product.create_async(params[:name], params[:external_id], params[:webhook_url])
     [202, {}, [{ 'log_id' => log_id }]]
   end
 

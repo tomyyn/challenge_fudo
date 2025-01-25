@@ -39,16 +39,18 @@ class Product
     errors.empty?
   end
 
-  def self.create_async(name, external_id)
+  def self.create_async(name, external_id, webhook_url = nil)
     task = CreateProductTask.new
     task_id = task.id
-    task.perform_async(name: name, external_id: external_id, log_id: task_id)
+    task.perform_async(name: name, external_id: external_id, log_id: task_id, webhook_url: webhook_url)
     @creation_logs << { log_id: task_id, name: name, external_id: external_id, status: 'creating' }
     task_id
   end
 
   def self.update_creation_log(log_id, errors)
-    log = @creation_logs.find { |log_hash| log_hash[:log_id] == log_id }
+    log = find_creation_log(log_id)
+    return if log.nil?
+
     log[:status] = errors.empty? ? 'created' : 'failed_to_create'
     log[:errors] = errors
   end
@@ -61,5 +63,9 @@ class Product
   def self.list_creation_logs(page, per_page, filters = {})
     filters = filters.slice(:log_id)
     ListService.new(@creation_logs, page, per_page, filters).filter_and_paginate_list
+  end
+
+  def self.find_creation_log(log_id)
+    @creation_logs.find { |log_hash| log_hash[:log_id] == log_id }
   end
 end

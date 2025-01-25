@@ -18,7 +18,7 @@ RSpec.describe ProductsController do
       end
 
       it 'enqueues the creation of a new product' do
-        expect(Product).to receive(:create_async).with('Product', '1234')
+        expect(Product).to receive(:create_async).with('Product', '1234', nil)
         post '/', body
       end
     end

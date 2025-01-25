@@ -10,5 +10,12 @@ RSpec.describe CreateProductTask do
       task = CreateProductTask.new
       task.perform(name: 'Product', external_id: '1234', log_id: 1)
     end
+
+    it 'does not send the webhook if the url is not provided' do
+      User.instance_variable_set(:@creation_logs, [{ log_id: 1 }])
+      expect(RequestService).not_to receive(:new)
+      task = CreateProductTask.new
+      task.perform(name: 'Product', external_id: '1234', log_id: 1)
+    end
   end
 end
