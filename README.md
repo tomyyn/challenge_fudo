@@ -54,3 +54,8 @@ autenticado antes.
 **Notas**: 
 - Dado que las gemas son instaladas en un volumen dedicado, no es necesario reconstruir la imagen cada vez que se modifican estas.
 - Si se desea utilizar byebug desde Docker, se debe levantar la aplicación de forma desacoplada con **docker-compose up -d**, y luego acoplarse al contenedor mediante **docker attach {{id del contenedor}}**.
+
+## Tests
+Los tests de la aplicación se encuentran en el directorio /api/spec y se dividen en dos tipos:
+1. **unit**: Se utilizan para probar las funcionalidades de los distintos componentes de la aplicación..
+2. **full_app**: Se utilizan para probar las requests a la aplicación completa, incluyendo todos los middlewares, configuraciones y ruteos. **Nota**: Estos podrían utilizarse en un futuro para generar automáticamente **openapi.yml** de conseguirse la herramienta correcta.
