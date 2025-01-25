@@ -18,7 +18,7 @@ class Product
     @external_id = external_id
   end
 
-  def self.create(name, external_id, log_id)
+  def self.create(name, external_id, log_id = nil)
     errors = []
     id = nil
     errors << 'Name is required' if name.nil? || name.empty?

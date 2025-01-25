@@ -9,9 +9,9 @@ class ProductsController < BaseController
 
   def route_request
     case routing_info
-    when ['POST', '']
+    when ['POST', '/']
       create
-    when ['GET', '']
+    when ['GET', '/']
       index
     when ['GET', '/creation_logs']
       creation_logs_index
