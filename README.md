@@ -51,4 +51,6 @@ autenticado antes.
 **pasos**:
 1. Construir la imagen de Docker (solo si ya no se encuentra construida) y levantar la aplicación ejecutando **docker-compose up**.
 
-**Nota**: Dado que las gemas son instaladas en un volumen dedicado, no es necesario reconstruir la imagen cada vez que se modifican estas.
+**Notas**: 
+- Dado que las gemas son instaladas en un volumen dedicado, no es necesario reconstruir la imagen cada vez que se modifican estas.
+- Si se desea utilizar byebug desde Docker, se debe levantar la aplicación de forma desacoplada con **docker-compose up -d**, y luego acoplarse al contenedor mediante **docker attach {{id del contenedor}}**.

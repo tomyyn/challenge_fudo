@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'byebug'
-
 # Clase base para los controladores de la aplicación.
 class BaseController
   attr_reader :session, :request, :params
