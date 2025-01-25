@@ -9,6 +9,9 @@ RSpec.describe AuthController do
   end
 
   describe 'POST /login' do
+    before do
+      User.instance_variable_set(:@users, [{ id: 0, username: 'tomyyn', password: '12345678' }])
+    end
     context 'when user exists' do
       let!(:body) { { username: 'tomyyn', password: '12345678' }.to_json }
       before :each do

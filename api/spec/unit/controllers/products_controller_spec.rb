@@ -18,8 +18,7 @@ RSpec.describe ProductsController do
       end
 
       it 'enqueues the creation of a new product' do
-        expect_any_instance_of(CreateProductTask).to receive(:perform_async).with(name: 'Product', external_id: '1234',
-                                                                                  log_id: anything)
+        expect(Product).to receive(:create_async).with('Product', '1234')
         post '/', body
       end
     end
@@ -44,9 +43,10 @@ RSpec.describe ProductsController do
       let!(:params) { {} }
 
       before do
-        Product.create('Product', '1234')
-        Product.create('Product', '1235')
-        Product.create('Producto', '1236')
+        Product.instance_variable_set(:@products,
+                                      [{ id: 0, name: 'Product', external_id: '1234' },
+                                       { id: 1, name: 'Product', external_id: '1235' },
+                                       { id: 2, name: 'Producto', external_id: '1236' }])
       end
 
       it 'returns 200' do
