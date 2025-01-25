@@ -10,28 +10,28 @@ class ListService
   end
 
   def filter_and_paginate_list
-    list = filter_list(@list, @filters)
-    paginate_list(list, @page, @per_page)
+    @list = filter_list
+    paginate_list
   end
 
-  def filter_list(list, filters)
-    if filters.any?
-      list = list.select do |item|
-        filters.all? do |key, value|
+  def filter_list
+    if @filters.any?
+      @list = @list.select do |item|
+        @filters.all? do |key, value|
           item[key].to_s == value.to_s
         end
       end
     end
 
-    list
+    @list
   end
 
-  def paginate_list(list, page, per_page)
-    page_count = (list.size / per_page.to_f).ceil
-    count = list.size
+  def paginate_list
+    page_count = (@list.size / @per_page.to_f).ceil
+    count = @list.size
 
-    list = list.slice(page * per_page, per_page) || []
+    @list = @list.slice(@page * @per_page, @per_page) || []
 
-    [list, count, page_count]
+    [@list, count, page_count]
   end
 end
