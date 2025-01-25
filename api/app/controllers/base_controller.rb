@@ -21,7 +21,7 @@ class BaseController
   end
 
   def routing_info
-    [@request.request_method, @request.path_info]
+    [@request.request_method, (@request.path_info.empty? ? '/' : @request.path_info)]
   end
 
   def not_found
@@ -30,7 +30,7 @@ class BaseController
 
   def build_params
     params = {}
-    input = request.body.read
+    input = request.body&.read || ''
     params.merge!(JSON.parse(input)) unless input.empty?
     params.merge!(request.params)
     params.deep_transform_keys { |key| key.underscore.to_sym }
