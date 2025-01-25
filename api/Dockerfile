@@ -1,5 +1,7 @@
 FROM ruby:3.2.2
 
+ENV BUNDLE_PATH /bundle
+
 RUN apt-get update -qq && apt-get install
 
 WORKDIR /app

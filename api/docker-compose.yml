@@ -6,3 +6,7 @@ services:
       - "9292:9292"
     volumes:
       - .:/app:cached
+      - gem-cache:/bundle:cached
+volumes:
+  gem-cache:
+    driver: local
