@@ -170,16 +170,20 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                name:
+                  type: string
+                external_id:
+                  type: string
+                webhook_url:
+                  type: string
               required:
               - name
               - external_id
-            example: {}
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties: {}
-            example: {}
+            example:
+              name: Product
+              external_id: '1234'
+              webhook_url: http://localhost:9292/webhook
       responses:
         '202':
           description: Starts the aynchronous creation of a new product and returns

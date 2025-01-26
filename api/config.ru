@@ -24,8 +24,7 @@ use Auth
 
 app = Rack::URLMap.new(
   '/auth' => AuthController.new,
-  '/products' => ProductsController.new,
-  '/' => Application.new # Controller de debug, borrar luego.
+  '/products' => ProductsController.new
 )
 
 run app
