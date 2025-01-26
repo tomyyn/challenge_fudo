@@ -29,7 +29,7 @@ class AuthController < BaseController
       [401, {}, { 'error' => 'Invalid username or password' }]
     else
       session['user_id'] = user.id
-      [200, {}, { 'message' => 'Logged in successfull' }]
+      [200, {}, { 'message' => 'Logged in successfully' }]
     end
   end
 end

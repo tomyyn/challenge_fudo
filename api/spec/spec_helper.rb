@@ -19,10 +19,13 @@ require 'rspec'
 require 'rack'
 require 'rack/test'
 require 'json'
+require 'json-schema'
 require 'byebug'
 require 'rspec/openapi'
 
 ENV['RACK_ENV'] = 'test'
+
+SCHEMAS_ROOT = "#{Dir.pwd}/spec/support/api/schemas".freeze
 
 Dir[File.expand_path('../lib/**/*.rb', __dir__)].each { |file| require file }
 
@@ -106,8 +109,11 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+
   config.include Rack::Test::Methods
 
+  RSpec::OpenAPI.title = 'API Challenge FUDO'
+  RSpec::OpenAPI.application_version = '1.0.0'
   RSpec::OpenAPI.path = 'public/openapi.yaml'
   RSpec::OpenAPI.servers = [{ url: 'http://localhost:9292' }]
 
@@ -118,6 +124,23 @@ RSpec.configure do |config|
       type: 'apiKey'
     }
   }
+
+  config.before(:each, type: :request) do
+    headers = { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+    allow_any_instance_of(ActionDispatch::Request).to receive(:headers).and_return(ActionDispatch::Http::Headers.from_hash(headers))
+  end
+end
+
+RSpec::Matchers.define :match_response_schema do |directory, schema|
+  match do |_response|
+    schema_dir = "#{SCHEMAS_ROOT}/#{directory}"
+    schema_file = "#{schema_dir}/#{schema}.json"
+    JSON::Validator.validate!(schema_file, last_response.body)
+  end
+end
+
+def read_schema(directory, schema)
+  File.read("#{SCHEMAS_ROOT}/#{directory}/#{schema}.json")
 end
 
 def full_app

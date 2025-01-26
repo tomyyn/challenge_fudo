@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "./product.json"
+      }
+    },
+    "count": { "type": "integer" },
+    "pageCount": { "type": "integer" }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "creation_logs": {
+      "type": "array",
+      "items": {
+        "$ref": "creationLog.json"
+      }
+    },
+    "count": { "type": "integer" },
+    "pageCount": { "type": "integer" }
+  }
+}

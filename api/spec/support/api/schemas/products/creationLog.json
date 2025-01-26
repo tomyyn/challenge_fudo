@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "log_id": { "type": "integer" },
+    "status": { "type": "string" },
+    "errors": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["log_id", "status", "errors"]
+}

@@ -23,6 +23,7 @@ group :development do
 end
 
 group :test do
+  gem 'json-schema'
   gem 'rack-test'
   gem 'rspec'
   gem 'rspec-openapi'
