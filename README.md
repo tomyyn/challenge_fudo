@@ -19,7 +19,7 @@ autenticado antes.
 - La API debe estar especificada en un archivo llamado openapi.yaml que siga especificación de OpenAPI. Este archivo debe ser expuesto como un archivo estático en raíz y nunca debe ser cacheado por los clientes.
 - Se debe exponer también en la raíz un archivo llamado AUTHORS, que indique tu nombre y apellido. Este archivo también debe ser estático y la respuesta debe indicar que se cachee por 24 hs.
 - No hace falta tener acceso a una base de datos. La persistencia de los productos puede ser en memoria.
-- Los atributos de los productos es suficiente que sean sólo id y nombr
+- Los atributos de los productos es suficiente que sean sólo id y nombre
 - Opcionalmente, poder levantar el proyecto en Docker.
 - Agregar en el README la forma de levantar el proyecto.
 - El proyecto debe estar hosteado en GitHub/GitLab o cualquier repo git, incluyendo los archivos .md de los 3 primeros puntos.

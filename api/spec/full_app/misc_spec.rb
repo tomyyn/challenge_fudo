@@ -33,4 +33,32 @@ RSpec.describe 'Misc API tests', type: :request, openapi: false do
       expect(last_response.headers['Content-Encoding']).to be_nil
     end
   end
+
+  describe 'Static files' do
+    describe 'GET /AUTHORS' do
+      it 'returns the AUTHORS file' do
+        get '/AUTHORS'
+        expect(last_response.status).to eq 200
+        expect(last_response.body).to eq File.read('./public/AUTHORS')
+      end
+
+      it 'returns the desired cache control policy' do
+        get '/AUTHORS'
+        expect(last_response.headers['Cache-Control']).to eq 'public, max-age=86400'
+      end
+    end
+
+    describe 'GET /openapi.yaml' do
+      it 'returns the OpenAPI file' do
+        get '/openapi.yaml'
+        expect(last_response.status).to eq 200
+        expect(last_response.body).to eq File.read('./public/openapi.yaml')
+      end
+
+      it 'returns the desired cache control policy' do
+        get '/openapi.yaml'
+        expect(last_response.headers['Cache-Control']).to eq 'no-store'
+      end
+    end
+  end
 end
