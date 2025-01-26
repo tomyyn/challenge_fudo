@@ -13,7 +13,7 @@ class BaseController
     headers['content-type'] = 'application/json'
     [status, headers, [body.to_json]]
   rescue StandardError => e
-    [500, { 'content-type' => 'application/json' }, [{ 'error' => e.message }]]
+    [500, { 'content-type' => 'application/json' }, { 'error' => e.message }]
   end
 
   def route_request
@@ -25,7 +25,7 @@ class BaseController
   end
 
   def not_found
-    [404, {}, [{ 'error' => 'Not found' }]]
+    [404, {}, { 'error' => 'Not found' }]
   end
 
   def build_params

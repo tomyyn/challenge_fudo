@@ -17,19 +17,19 @@ class AuthController < BaseController
   end
 
   def login
-    return [422, {}, [{ 'error' => 'you are already logged in' }]] unless session['user_id'].nil?
+    return [422, {}, { 'error' => 'you are already logged in' }] unless session['user_id'].nil?
 
     if params[:username].nil? || params[:password].nil?
       return [422, {},
-              [{ 'error' => 'username and password are required' }]]
+              { 'error' => 'username and password are required' }]
     end
 
     user = User.find_by(username: params[:username], password: params[:password])
     if user.nil?
-      [401, {}, [{ 'error' => 'Invalid username or password' }]]
+      [401, {}, { 'error' => 'Invalid username or password' }]
     else
       session['user_id'] = user.id
-      [200, {}, [{ 'message' => 'Logged in successfull' }]]
+      [200, {}, { 'message' => 'Logged in successfull' }]
     end
   end
 end

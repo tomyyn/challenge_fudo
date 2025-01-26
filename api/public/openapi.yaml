@@ -1,2 +1,231 @@
-to:
-  be: done
+---
+openapi: 3.0.3
+info:
+  title: api
+  version: 1.0.0
+servers:
+- url: http://localhost:9292
+paths:
+  "/auth/login":
+    post:
+      summary: POST /auth/login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties: {}
+            example: {}
+      responses:
+        '200':
+          description: Logs in successfully if credentials are corret
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                  required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+              example:
+                message: Logged in successfull
+        '401':
+          description: Doesn't log in if credentials are wrong
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                  required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Invalid username or password
+        '422':
+          description: Doesn't log in if user is already logged in or if either username
+            or password is missing
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                  required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: you are already logged in
+        '500':
+          description: Logs in successfully if credentials are corret
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              example:
+              - error
+              - unexpected token at 'body=%7B%22username%22%3A%22tomy'
+  "/products":
+    get:
+      summary: GET /products
+      responses:
+        '200':
+          description: Returns the list of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        external_id:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - external_id
+                  count:
+                    type: integer
+                  page_count:
+                    type: integer
+                required:
+                - products
+                - count
+                - page_count
+              example:
+                products:
+                - id: 0
+                  name: Product
+                  external_id: '1234'
+                count: 1
+                page_count: 1
+        '401':
+          description: Fails if the user is not logged in
+    post:
+      summary: POST /products
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties: {}
+            example: {}
+      responses:
+        '202':
+          description: Enqueues the creation of a new product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  log_id:
+                    type: integer
+                required:
+                - log_id
+              example:
+                log_id: 0
+        '401':
+          description: Fails if the user is not logged in
+        '422':
+          description: Does not enqueue the creation of a new product if data is missing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: name and external_id are required
+  "/products/creation_logs":
+    get:
+      summary: GET /products/creation_logs
+      responses:
+        '200':
+          description: Returns the list of creation logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  creation_logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        log_id:
+                          type: integer
+                        name:
+                          type: string
+                        external_id:
+                          type: string
+                        status:
+                          type: string
+                        errors:
+                          type: array
+                          items: {}
+                      required:
+                      - log_id
+                      - name
+                      - external_id
+                      - status
+                      - errors
+                  count:
+                    type: integer
+                  page_count:
+                    type: integer
+                required:
+                - creation_logs
+                - count
+                - page_count
+              example:
+                creation_logs:
+                - log_id: 0
+                  name: Product
+                  external_id: '1234'
+                  status: created
+                  errors: []
+                count: 1
+                page_count: 1
+        '401':
+          description: Fails if the user is not logged in
+components:
+  securitySchemes:
+    cookieAuth:
+      description: Authenticated via cookie
+      in: cookie
+      name: rack.session
+      type: apiKey

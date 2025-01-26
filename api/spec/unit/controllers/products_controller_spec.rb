@@ -57,9 +57,9 @@ RSpec.describe ProductsController do
       it 'returns the list of products' do
         get '/', params
         parsed_body = JSON.parse(last_response.body)
-        expect(parsed_body.first['products'].size).to eq 3
-        expect(parsed_body.first['page_count']).to eq 1
-        expect(parsed_body.first['count']).to eq 3
+        expect(parsed_body['products'].size).to eq 3
+        expect(parsed_body['page_count']).to eq 1
+        expect(parsed_body['count']).to eq 3
       end
 
       describe 'filtering' do
@@ -69,10 +69,10 @@ RSpec.describe ProductsController do
           it 'returns only the products that match the filter' do
             get '/', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['products'].size).to eq 2
-            expect(parsed_body.first['page_count']).to eq 1
-            expect(parsed_body.first['count']).to eq 2
-            expect(parsed_body.first['products'].map { |product| product['name'] }).to eq %w[Product Product]
+            expect(parsed_body['products'].size).to eq 2
+            expect(parsed_body['page_count']).to eq 1
+            expect(parsed_body['count']).to eq 2
+            expect(parsed_body['products'].map { |product| product['name'] }).to eq %w[Product Product]
           end
         end
 
@@ -82,10 +82,10 @@ RSpec.describe ProductsController do
           it 'returns only the products that match the filter' do
             get '/', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['products'].size).to eq 1
-            expect(parsed_body.first['page_count']).to eq 1
-            expect(parsed_body.first['count']).to eq 1
-            expect(parsed_body.first['products'].map { |product| product['external_id'] }).to eq ['1236']
+            expect(parsed_body['products'].size).to eq 1
+            expect(parsed_body['page_count']).to eq 1
+            expect(parsed_body['count']).to eq 1
+            expect(parsed_body['products'].map { |product| product['external_id'] }).to eq ['1236']
           end
         end
 
@@ -95,10 +95,10 @@ RSpec.describe ProductsController do
           it 'returns only the products that match the filter' do
             get '/', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['products'].size).to eq 1
-            expect(parsed_body.first['page_count']).to eq 1
-            expect(parsed_body.first['count']).to eq 1
-            expect(parsed_body.first['products'].map { |product| product['id'] }).to eq [0]
+            expect(parsed_body['products'].size).to eq 1
+            expect(parsed_body['page_count']).to eq 1
+            expect(parsed_body['count']).to eq 1
+            expect(parsed_body['products'].map { |product| product['id'] }).to eq [0]
           end
         end
       end
@@ -109,10 +109,10 @@ RSpec.describe ProductsController do
           it 'returns the specified number of products' do
             get '/', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['products'].size).to eq 2
-            expect(parsed_body.first['count']).to eq 3
-            expect(parsed_body.first['page_count']).to eq 2
-            expect(parsed_body.first['products'].map { |product| product['external_id'] }).to eq %w[1234 1235]
+            expect(parsed_body['products'].size).to eq 2
+            expect(parsed_body['count']).to eq 3
+            expect(parsed_body['page_count']).to eq 2
+            expect(parsed_body['products'].map { |product| product['external_id'] }).to eq %w[1234 1235]
           end
         end
 
@@ -122,10 +122,10 @@ RSpec.describe ProductsController do
           it 'returns 1 product' do
             get '/', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['products'].size).to eq 1
-            expect(parsed_body.first['count']).to eq 3
-            expect(parsed_body.first['page_count']).to eq 2
-            expect(parsed_body.first['products'].map { |product| product['external_id'] }).to eq ['1236']
+            expect(parsed_body['products'].size).to eq 1
+            expect(parsed_body['count']).to eq 3
+            expect(parsed_body['page_count']).to eq 2
+            expect(parsed_body['products'].map { |product| product['external_id'] }).to eq ['1236']
           end
         end
       end
@@ -148,9 +148,9 @@ RSpec.describe ProductsController do
       it 'returns the list of products' do
         get '/creation_logs', params
         parsed_body = JSON.parse(last_response.body)
-        expect(parsed_body.first['creation_logs'].size).to eq 3
-        expect(parsed_body.first['page_count']).to eq 1
-        expect(parsed_body.first['count']).to eq 3
+        expect(parsed_body['creation_logs'].size).to eq 3
+        expect(parsed_body['page_count']).to eq 1
+        expect(parsed_body['count']).to eq 3
       end
 
       describe 'filtering' do
@@ -160,10 +160,10 @@ RSpec.describe ProductsController do
           it 'returns only the logs that match the filter' do
             get '/creation_logs', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['creation_logs'].size).to eq 1
-            expect(parsed_body.first['page_count']).to eq 1
-            expect(parsed_body.first['count']).to eq 1
-            expect(parsed_body.first['creation_logs'].map { |log| log['log_id'] }).to eq [12]
+            expect(parsed_body['creation_logs'].size).to eq 1
+            expect(parsed_body['page_count']).to eq 1
+            expect(parsed_body['count']).to eq 1
+            expect(parsed_body['creation_logs'].map { |log| log['log_id'] }).to eq [12]
           end
         end
       end
@@ -174,10 +174,10 @@ RSpec.describe ProductsController do
           it 'returns the specified number of logs' do
             get '/creation_logs', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['creation_logs'].size).to eq 2
-            expect(parsed_body.first['count']).to eq 3
-            expect(parsed_body.first['page_count']).to eq 2
-            expect(parsed_body.first['creation_logs'].map { |log| log['log_id'] }).to eq [4, 12]
+            expect(parsed_body['creation_logs'].size).to eq 2
+            expect(parsed_body['count']).to eq 3
+            expect(parsed_body['page_count']).to eq 2
+            expect(parsed_body['creation_logs'].map { |log| log['log_id'] }).to eq [4, 12]
           end
         end
 
@@ -187,10 +187,10 @@ RSpec.describe ProductsController do
           it 'returns 1 log' do
             get '/creation_logs', params
             parsed_body = JSON.parse(last_response.body)
-            expect(parsed_body.first['creation_logs'].size).to eq 1
-            expect(parsed_body.first['count']).to eq 3
-            expect(parsed_body.first['page_count']).to eq 2
-            expect(parsed_body.first['creation_logs'].map { |log| log['log_id'] }).to eq [21]
+            expect(parsed_body['creation_logs'].size).to eq 1
+            expect(parsed_body['count']).to eq 3
+            expect(parsed_body['page_count']).to eq 2
+            expect(parsed_body['creation_logs'].map { |log| log['log_id'] }).to eq [21]
           end
         end
       end

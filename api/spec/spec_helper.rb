@@ -20,6 +20,7 @@ require 'rack'
 require 'rack/test'
 require 'json'
 require 'byebug'
+require 'rspec/openapi'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -106,4 +107,19 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
   config.include Rack::Test::Methods
+
+  RSpec::OpenAPI.path = 'public/openapi.yaml'
+  RSpec::OpenAPI.servers = [{ url: 'http://localhost:9292' }]
+
+  RSpec::OpenAPI.security_schemes = {
+    'cookieAuth' => {
+      name: 'rack.session',
+      in: 'cookie',
+      type: 'apiKey'
+    }
+  }
+end
+
+def full_app
+  Rack::Builder.parse_file('config.ru')
 end
