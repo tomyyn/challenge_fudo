@@ -2,26 +2,27 @@
 
 source 'https://rubygems.org'
 
-# Core gems
+# Gemas core
 gem 'puma'
 gem 'rack'
 gem 'rackup'
 
-# Env management
+# Manejo de variables de entorno
 gem 'dotenv'
 
-# Session management
+# Manejo de sesiones
 gem 'rack-session', '~> 2'
 
 # Misc
 gem 'require_all'
 
-# Development
+# Desarrollo
 group :development do
   gem 'byebug'
   gem 'rubocop'
 end
 
+# Tests
 group :test do
   gem 'json-schema'
   gem 'rack-test'
