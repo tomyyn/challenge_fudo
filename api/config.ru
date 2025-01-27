@@ -5,7 +5,6 @@ require 'rack/session/cookie'
 require 'dotenv'
 require 'require_all'
 
-require './app/application'
 require_all './app/middleware'
 require_all './app/controllers'
 require_all './lib'
