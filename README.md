@@ -49,7 +49,7 @@ autenticado antes.
 - docker-compose
 
 **pasos**:
-1. Construir la imagen de Docker (solo si ya no se encuentra construida) y levantar la aplicación ejecutando **docker-compose up**.
+1. Construir la imagen de Docker (solo si no se encuentra construida) y levantar la aplicación ejecutando **docker-compose up**.
 
 **Notas**: 
 - Dado que las gemas son instaladas en un volumen dedicado, no es necesario reconstruir la imagen cada vez que se modifican estas.
