@@ -32,7 +32,7 @@ autenticado antes.
 ## Cómo levantar la aplicación
 - Es posible levantar la aplicación de forma nativa o mediante Docker.
 - Todo lo especificado en esta sección deberá realizarse en el directorio **/api**/.
-- Antes de levantar la aplicación, es necesario crear un archivo **.env** en **/api**, Esto puede hacerse renombrando **.env.dist**
+- Antes de levantar la aplicación, es necesario crear un archivo **.env** en **/api**, Esto puede hacerse renombrando **.env.dist**.
 
 ### Nativo
 **Requisitos**:
@@ -41,7 +41,7 @@ autenticado antes.
 
 **pasos**:
 1. Instalar las gemas requeridas ejecutando **bundle install**.
-2. Levantar la aplicación ejecutando **rackup**
+2. Levantar la aplicación ejecutando **rackup**.
 
 ### Docker
 **Requisitos**:
