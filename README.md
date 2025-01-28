@@ -58,12 +58,11 @@ autenticado antes.
 ## Tests
 Los tests de la aplicación se encuentran en el directorio /api/spec y se dividen en dos tipos:
 1. **unit**: Se utilizan para probar las funcionalidades de los distintos componentes de la aplicación.
-2. **full_app**: Se utilizan para probar las requests a la aplicación completa, incluyendo todos los middlewares, configuraciones y ruteos. **Nota**: Estos son utilizados para la generación de openapi.yaml, mediante ejecutar **OPENAPI=1 bundle exec rspec spec/full_app/**, sin embargo, también require retoques manuales dado el funcionamiento de la gema **rspec-openapi**.
+2. **full_app**: Se utilizan para probar las requests a la aplicación completa, incluyendo todos los middlewares, configuraciones y ruteos. **Nota**: Estos son utilizados para la generación de openapi.yaml, mediante ejecutar **OPENAPI=1 bundle exec rspec spec/full_app/**, sin embargo, también requiere retoques manuales dado el funcionamiento de la gema **rspec-openapi**.
 
 Para correr estos, utilizar **bundle exec rspec**.
 
 ## Autenticación
-La aplicación cuenta con un usuario precargado con las siguientes crenciales:
-
+La aplicación cuenta con un usuario precargado con las siguientes credenciales:
 - username: tomyyn
 - password: 12345678
