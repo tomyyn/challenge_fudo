@@ -29,10 +29,9 @@ class Product
       if errors.empty?
         id = @id
         @id += 1
+        @products << { id: id, name: name, external_id: external_id }
       end
     end
-
-    @products << { id: id, name: name, external_id: external_id } if errors.empty?
 
     update_creation_log(log_id, errors) unless log_id.nil?
 
