@@ -1,4 +1,4 @@
-**Repositorio para challenge técnico de FUDO para la posición de Desarrollador de Backed Developer (Ruby) Ssr.**
+**Repositorio para challenge técnico de FUDO para la posición de Desarrollador de Backend Developer (Ruby) Ssr.**
 
 ## Consignas
 1. Explicar en un archivo llamado fudo.md qué es lo que es Fudo, en sólo 2 o 3 párrafos, en no más de 100 palabras.
@@ -63,6 +63,7 @@ Los tests de la aplicación se encuentran en el directorio /api/spec y se divide
 Para correr estos, utilizar **bundle exec rspec**.
 
 ## Autenticación
-La aplicación cuenta con un usuario precargado con las siguientes crenciales: 
- -username: tomyyn
- -password: 12345678
+La aplicación cuenta con un usuario precargado con las siguientes crenciales:
+
+- username: tomyyn
+- password: 12345678
